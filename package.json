@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "my first node js site",
   "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Liriax/firstpage.git"
