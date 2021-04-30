@@ -4,7 +4,7 @@
   "description": "my first node js site",
   "main": "server.js",
   "scripts": {
-    "start": "npm start"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
