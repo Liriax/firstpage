@@ -2,9 +2,9 @@
   "name": "mysite",
   "version": "1.0.0",
   "description": "my first node js site",
-  "main": "login-js.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm start"
   },
   "repository": {
     "type": "git",
