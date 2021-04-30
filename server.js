@@ -11,7 +11,8 @@ var connection = mysql.createConnection({
 	host     : 'localhost',
 	user     : 'root',
 	password : 'SQLzy726*',
-	database : 'nodelogin'
+	database : 'nodelogin',
+	port: "3306"
 });
 connection.connect((err) => {
     if (err) throw err;
