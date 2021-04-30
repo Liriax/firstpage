@@ -1,1 +1,1 @@
-web: npm start
+web: npm start login-js.js
