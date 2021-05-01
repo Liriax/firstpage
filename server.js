@@ -1,4 +1,3 @@
-
 var mysql = require('mysql');
 var express = require('express');
 var session = require('express-session');
@@ -7,17 +6,16 @@ var fs = require('fs');
 var http = require('http');
 
 var path = require('path');
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'SQLzy726*',
-	database : 'nodelogin',
-	port: "3306"
-});
-connection.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
-  });
+// var connection = mysql.createConnection({
+// 	host     : 'localhost',
+// 	user     : 'root',
+// 	password : 'SQLzy726*',
+// 	database : 'nodelogin'
+// });
+// connection.connect((err) => {
+//     if (err) throw err;
+//     console.log('Connected!');
+//   });
 
   
 var app = express();
@@ -42,16 +40,21 @@ app.post('/auth', function (request, response) {
 	var password = request.body.password;
 
 	if (username && password) {
-		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect('/home');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			
-			response.end();
-		});
+		if (username == 'admin' && password == 'admin'){
+			request.session.loggedin = true;
+			request.session.username = username;
+			response.redirect('/home');
+		}
+		// connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+		// 	if (results.length > 0) {
+		// 		request.session.loggedin = true;
+		// 		request.session.username = username;
+		// 		response.redirect('/home');
+		// 	} else {
+		// 		response.send('Incorrect Username and/or Password!');
+		// 	}			
+		// 	response.end();
+		// });
 	} else {
 		response.send('Please enter Username and Password!');
 		response.end();
