@@ -17,20 +17,20 @@ var path = require('path');
 //     console.log('Connected!');
 //   });
 
-  
+
 var app = express();
 
 app.use(session({
-	secret: 'secret',
+	secret: 'lirias secret session',
 	resave: true,
 	saveUninitialized: true
 }));
-app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(__dirname+'/public'));
 
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname +'/public' + '/login.html'));
+
+app.get('/', function (request, response) {
+	response.sendFile(path.join(__dirname + '/public' + '/login.html'));
 });
 
 
@@ -40,13 +40,14 @@ app.post('/auth', function (request, response) {
 	var password = request.body.password;
 
 	if (username && password) {
-		if (username == 'admin' && password == 'admin'){
+		if (username == 'admin' && password == 'admin') {
 			request.session.loggedin = true;
 			request.session.username = username;
 			response.redirect('/home');
 		}
 		else {
-			response.send('Incorrect Username and/or Password!');
+			request.session.loggedin = false;
+			response.redirect('/');
 		}
 		response.end();
 
@@ -65,10 +66,20 @@ app.post('/auth', function (request, response) {
 		response.end();
 	}
 });
+app.use(function (request, response, next) {
+	if (request.session.loggedin){
+		next();
+	} 
+	else {
+		console.log('not logged in!');
+		response.redirect('/');
+	}
+  });
+app.use(express.static(__dirname + '/public'));
 
-app.get('/home', function(request, response) {
+app.get('/home', function (request, response) {
 	if (request.session.loggedin) {
-		response.redirect('/game.html');
+		response.redirect('/home.html');
 	} else {
 		response.redirect('/');
 	}

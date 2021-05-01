@@ -1,21 +1,11 @@
 {
-  "name": "mysite",
+  "name": "firstsite",
   "version": "1.0.0",
-  "description": "my first node js site",
+  "description": "my first site",
   "main": "server.js",
-  "dependencies":{
-    "express":"^4.17.1",
-    "express-session":"^1.17.1",
-    "mysql":"^2.18.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Liriax/firstpage.git"
+  "scripts": {
+    "start": "node server.js"
   },
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Liriax/firstpage/issues"
-  },
-  "homepage": "https://github.com/Liriax/firstpage#readme"
+  "license": "ISC"
 }
