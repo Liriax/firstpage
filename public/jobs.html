@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find jobs</title>
+    <style>
+        body {
+            background-color: #c7eff0;
+        }
+        .form {
+            margin-top: 300px;
+            text-align: center;
+        }
+        label {
+            display: block;
+            font-size: large;
+            font-weight: 320;
+            color: #314e4e;
+            font-family: sans-serif;
+        }
+
+        input[type='submit'] {
+
+            margin-top: 10px;
+            background-color: white;
+            font-weight: 400;
+            color: #85c4c5;
+            font-family: sans-serif;
+
+        }
+
+        input[type='submit']:hover {
+            color: #ece148;
+            transition: color 0.3s ease-in-out;
+
+        }
+
+        input {
+            font-family: sans-serif;
+            font-weight: 320;
+            color: #314e4e;
+            border: 2px solid snow;
+            border-radius: 2px;
+            margin: 5px auto;
+            background-color: rgb(243, 212, 243);
+        }
+
+        input:focus {
+            outline:none;
+            background-color: #fffab8;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class='title'>
+        <h4>Find jobs!</h4>
+    </div>
+    <form  action="opt" method="POST">
+        <input type='text' id='major' name='major' value='Informatik' required>
+        <input type='submit' id='submit' value='find the jobs'>
+
+    </form>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    
+    <script src='jobs.js'></script>
+
+</body>
+</html>
