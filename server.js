@@ -96,19 +96,21 @@ app.get('/home', function (request, response) {
 app.post('/opt', function (request, response) {
 	var major = request.body.major;
 	var pages = request.body.pages;
+	var all_results=[];
 
-	var jobs=[];
+	//var jobs=[];
 	var found_jobs = [];
-	get_all_pages(pages).then(() => {
+	get_all_pages(pages, all_results).then((results) => {
 		console.log('SUCCESSFULLY COMPLETED THE STELLENWERK SCRAPING SAMPLE');
-		fs.createReadStream('stellenwerk.csv')
-			.pipe(csv())
-			.on('data', (row) => {
-				jobs.push(row);
-			})
-			.on('end', () => {
+		console.log(results);
+		// fs.createReadStream('stellenwerk.csv')
+		// 	.pipe(csv())
+		// 	.on('data', (row) => {
+		// 		jobs.push(row);
+		// 	})
+		// 	.on('end', () => {
 
-				jobs.forEach(element => {
+			results.forEach(element => {
 					var requirements = element['Anforderungsprofil'];
 					if (requirements != undefined && requirements.toLowerCase().includes(major.toLowerCase())) {
 						found_jobs.push({
@@ -131,7 +133,7 @@ app.post('/opt', function (request, response) {
 				
 				function buildHtml() {
 					var header = '<link rel="stylesheet" href="result.css">';
-					var body = '<table>';
+					var body = '<p>Search results of '+major+' for '+pages+' pages: </p><table>';
 				  
 					for (var i = 0; i < found_jobs.length; i++) {
 						var tr = "<tr>";
@@ -151,7 +153,7 @@ app.post('/opt', function (request, response) {
 
 				response.redirect('/result.html');
 				response.end();
-			});
+			// });
 	});
 
 	
@@ -189,18 +191,18 @@ const getJobs = async (page) => {
     return Promise.all(businessMap);
 };
 
-const get_all_pages = async (page_num) => {
-    var all_results=[];
+const get_all_pages = async (page_num, all_results) => {
+    
     for (var n=0; n<=page_num; n++){
         await getJobs(n)
         .then(result => {
             all_results = all_results.concat(result);
-            //console.log(all_results.length);
+            console.log(all_results.length);
         });
     }
-    
-    const transformed = new otcsv(all_results);
-    return transformed.toDisk('./stellenwerk.csv');
+    return all_results
+    // const transformed = new otcsv(all_results);
+    // return transformed.toDisk('./stellenwerk.csv');
 };
 
 
