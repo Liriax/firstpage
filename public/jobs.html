@@ -8,18 +8,18 @@
     <style>
         body {
             background-color: #c7eff0;
+            margin-left: 500px;          
+            margin-top: 300px;
         }
         .form {
-            margin-top: 300px;
             text-align: center;
-        }
-        label {
-            display: block;
-            font-size: large;
-            font-weight: 320;
-            color: #314e4e;
             font-family: sans-serif;
+
         }
+        p {
+            font-size: small;
+        }
+        
 
         input[type='submit'] {
 
@@ -27,7 +27,7 @@
             background-color: white;
             font-weight: 400;
             color: #85c4c5;
-            font-family: sans-serif;
+            
 
         }
 
@@ -54,6 +54,7 @@
         }
 
         
+        
     </style>
 </head>
 <body>
@@ -61,13 +62,15 @@
         <h4>Find jobs!</h4>
     </div>
     <form  action="opt" method="POST">
-        <input type='text' id='major' name='major' value='Informatik' required>
-        <input type='submit' id='submit' value='find the jobs'>
+        <p> From https://www.stellenwerk-darmstadt.de/jobboerse/ </p>
+        
+        <input type='text' id='major' name='major' placeholder="Keyword" required>
+        <input type='number' id='pages' name='pages' placeholder="Number of pages" required>
+
+        <input type='submit' id='submit' value='Search'>
 
     </form>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    
-    <script src='jobs.js'></script>
 
 </body>
 </html>
